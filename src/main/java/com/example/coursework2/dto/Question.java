@@ -1,4 +1,4 @@
-package dto;
+package com.example.coursework2.dto;
 
 import java.util.Objects;
 
@@ -10,9 +10,11 @@ public class Question {
         this.question = question;
         this.answer = answer;
     }
+
     public String getQuestion() {
         return question;
     }
+
     public String getAnswer() {
         return answer;
     }

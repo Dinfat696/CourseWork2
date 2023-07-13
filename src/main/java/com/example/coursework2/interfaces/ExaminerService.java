@@ -1,6 +1,6 @@
-package interfaces;
+package com.example.coursework2.interfaces;
 
-import dto.Question;
+import com.example.coursework2.dto.Question;
 
 import java.util.Collection;
 

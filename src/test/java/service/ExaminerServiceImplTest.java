@@ -1,15 +1,15 @@
 package service;
 
 
-import dto.Question;
+import com.example.coursework2.dto.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import services.ExaminerServiceImpl;
-import services.JavaQuestionServiceImpl;
+import com.example.coursework2.services.ExaminerServiceImpl;
+import com.example.coursework2.services.JavaQuestionServiceImpl;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,37 +20,37 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-    public class ExaminerServiceImplTest {
+public class ExaminerServiceImplTest {
 
-        @Mock
-        JavaQuestionServiceImpl serviceMock;
+    @Mock
+    JavaQuestionServiceImpl serviceMock;
 
-        @InjectMocks
-        ExaminerServiceImpl examinerService;
+    @InjectMocks
+    ExaminerServiceImpl examinerService;
 
-        List<Question> questions = Arrays.asList(
-                new Question("Question1", "Answer1"),
-                new Question("Question2", "Answer2"),
-                new Question("Question3", "Answer3"));
+    List<Question> questions = Arrays.asList(
+            new Question("Question1", "Answer1"),
+            new Question("Question2", "Answer2"),
+            new Question("Question3", "Answer3"));
 
-        @BeforeEach
-        void setUp() {
-            when(serviceMock.getAll()).thenReturn(questions);
-        }
-
-        @Test
-        void testGetQuestions() {
-            int amount = 3;
-            when(serviceMock.getRandomQuestion())
-                    .thenReturn(questions.get(0))
-                    .thenReturn(questions.get(1))
-                    .thenReturn(questions.get(2));
-
-            Collection<Question> result = examinerService.getQuestions(amount);
-            assertEquals(amount, result.size());
-            assertTrue(result.contains(questions.get(0)));
-            assertTrue(result.contains(questions.get(1)));
-            assertTrue(result.contains(questions.get(2)));
-        }
+    @BeforeEach
+    void setUp() {
+        when(serviceMock.getAll()).thenReturn(questions);
     }
+
+    @Test
+    void testGetQuestions() {
+        int amount = 3;
+        when(serviceMock.getRandomQuestion())
+                .thenReturn(questions.get(0))
+                .thenReturn(questions.get(1))
+                .thenReturn(questions.get(2));
+
+        Collection<Question> result = examinerService.getQuestions(amount);
+        assertEquals(amount, result.size());
+        assertTrue(result.contains(questions.get(0)));
+        assertTrue(result.contains(questions.get(1)));
+        assertTrue(result.contains(questions.get(2)));
+    }
+}
 
