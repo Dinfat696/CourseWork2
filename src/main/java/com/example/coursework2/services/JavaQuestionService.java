@@ -1,15 +1,18 @@
 package com.example.coursework2.services;
 
-import com.example.coursework2.dto.Question;
-import com.example.coursework2.exceptions.MoreQuestionThanAvalibalExceptoin;
+import com.example.coursework2.exceptions.QuestionAlreadyException;
+import com.example.coursework2.model.Question;
+import com.example.coursework2.exceptions.NotEnoughQuestionsExcertion;
 import com.example.coursework2.interfaces.QuestionService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class JavaQuestionServiceImpl implements QuestionService {
-    private List<Question> questions = new ArrayList<>();
+public class JavaQuestionService implements QuestionService {
+
+    public static final Random RANDOM = new Random();
+    List<Question> questions = new ArrayList<>();
 
     @Override
     public Question add(String question, String answer) {
@@ -18,7 +21,7 @@ public class JavaQuestionServiceImpl implements QuestionService {
             questions.add(newQuestion);
             return newQuestion;
         }
-        throw new MoreQuestionThanAvalibalExceptoin();
+        throw new QuestionAlreadyException();
     }
 
     @Override
@@ -33,15 +36,10 @@ public class JavaQuestionServiceImpl implements QuestionService {
     public Collection<Question> getAll() {
         return Collections.unmodifiableList(questions);
     }
-    private static final Random random = new Random();
+
 
     @Override
     public Question getRandomQuestion() {
-        int size = questions.size();
-        if (size > 0) {
-            int randomIndex = new Random().nextInt(size);
-            return questions.get(randomIndex);
-        }
-        return null;
+        return questions.get(RANDOM.nextInt(questions.size()));
     }
 }

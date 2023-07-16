@@ -1,19 +1,17 @@
 package service;
 
-import com.example.coursework2.dto.Question;
-import org.junit.jupiter.api.BeforeEach;
+import com.example.coursework2.model.Question;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.example.coursework2.services.JavaQuestionServiceImpl;
+import com.example.coursework2.services.JavaQuestionService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 public class JavaQuestionServiceTest {
-    private JavaQuestionServiceImpl serviceMock = new JavaQuestionServiceImpl();
+    private JavaQuestionService serviceMock = new JavaQuestionService();
 
     @Test
     void add() {

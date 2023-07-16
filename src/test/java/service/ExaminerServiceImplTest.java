@@ -1,7 +1,7 @@
 package service;
 
 
-import com.example.coursework2.dto.Question;
+import com.example.coursework2.model.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,7 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import com.example.coursework2.services.ExaminerServiceImpl;
-import com.example.coursework2.services.JavaQuestionServiceImpl;
+import com.example.coursework2.services.JavaQuestionService;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 public class ExaminerServiceImplTest {
 
     @Mock
-    JavaQuestionServiceImpl serviceMock;
+    JavaQuestionService serviceMock;
 
     @InjectMocks
     ExaminerServiceImpl examinerService;

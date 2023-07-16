@@ -1,33 +1,32 @@
 package com.example.coursework2.services;
 
-import com.example.coursework2.dto.Question;
-import com.example.coursework2.exceptions.MoreQuestionThanAvalibalExceptoin;
 import com.example.coursework2.interfaces.ExaminerService;
+import com.example.coursework2.interfaces.QuestionService;
+import com.example.coursework2.model.Question;
+import com.example.coursework2.exceptions.NotEnoughQuestionsExcertion;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-    private final JavaQuestionServiceImpl service;
+    private final QuestionService questionService;
 
-    public ExaminerServiceImpl(JavaQuestionServiceImpl service) {
-        this.service = service;
+    public ExaminerServiceImpl(QuestionService questionService) {
+        this.questionService = questionService;
     }
 
     @Override
     public Collection<Question> getQuestions(int amount) {
-        Set<Question> examQuestions = new HashSet<>(amount);
-        if (amount > service.getAll().size()) {
-            throw new MoreQuestionThanAvalibalExceptoin();
+        if (amount > questionService.getAll().size()) {
+            throw new NotEnoughQuestionsExcertion();
         }
-        while (examQuestions.size() < amount) {
-            examQuestions.add(service.getRandomQuestion());
-        }
-        return examQuestions;
+        return Stream.generate(()->questionService.getRandomQuestion())
+                .distinct()
+                .limit(amount)
+                .collect(Collectors.toList());
     }
 
 }
