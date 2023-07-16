@@ -23,10 +23,9 @@ public class ExaminerServiceImpl implements ExaminerService {
         if (amount > questionService.getAll().size()) {
             throw new NotEnoughQuestionsExcertion();
         }
-        return Stream.generate(()->questionService.getRandomQuestion())
+        return Stream.generate(() -> questionService.getRandomQuestion())
                 .distinct()
                 .limit(amount)
                 .collect(Collectors.toList());
     }
-
 }

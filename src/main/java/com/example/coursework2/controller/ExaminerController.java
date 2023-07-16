@@ -20,6 +20,7 @@ public class ExaminerController {
     public Collection<Question> getQuestions(@PathVariable Integer amount) {
         return examinerService.getQuestions(amount);
     }
+
 }
 
 

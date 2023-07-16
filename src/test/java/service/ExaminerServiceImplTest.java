@@ -52,5 +52,6 @@ public class ExaminerServiceImplTest {
         assertTrue(result.contains(questions.get(1)));
         assertTrue(result.contains(questions.get(2)));
     }
+
 }
 

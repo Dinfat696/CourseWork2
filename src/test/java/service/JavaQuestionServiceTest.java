@@ -36,6 +36,7 @@ public class JavaQuestionServiceTest {
         serviceMock.add("Question", "Question");
         assertEquals(2, serviceMock.getAll().size());
     }
+
 }
 
 
